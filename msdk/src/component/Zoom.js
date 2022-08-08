@@ -29,28 +29,27 @@ function Zoom() {
     var registrantToken = ''
     
 
-    const leavebtn = document.querySelector('zmu-btn footer__leave-btn ax-outline ellipsis zmu-btn--danger zmu-btn__outline--blue')
-    console.log('Leave Button: ',leavebtn)
+    // const leavebtn = document.querySelector('zmu-btn footer__leave-btn ax-outline ellipsis zmu-btn--danger zmu-btn__outline--blue')
+    // console.log('Leave Button: ',leavebtn)
 
-    const handleClick = (e) => {
+    // const handleClick = (e) => {
         
-    if(e.target.textContent === "Leave"){
-          ZoomMtg.leaveMeeting({});
-    }else {
-         console.log(e.target.textContent)
-          console.log('A key was pressed', e.currentTarget);
-        }
+    // if(e.target.textContent === "Leave"){
+    //       ZoomMtg.leaveMeeting({});
+    // }else {
+    //       console.log('A key was pressed', e.target.textContent);
+    //     }
        
-      };
+    //   };
     
-      React.useEffect(() => {
-        window.addEventListener('click', handleClick );
+    //   React.useEffect(() => {
+    //     window.addEventListener('click', handleClick );
     
-        // cleanup this component
-        return () => {
-          window.removeEventListener('click', handleClick );
-        };
-      }, []);
+    //     // cleanup this component
+    //     return () => {
+    //       window.removeEventListener('click', handleClick );
+    //     };
+    //   }, []);
 
     
       // window.addEventListener('unload', () => {

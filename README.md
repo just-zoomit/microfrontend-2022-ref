@@ -35,7 +35,7 @@ You can similarly navigate to the msdk directory and run the following commands 
 ```
  $ cd msdk  
  
-  $ npm install
+$ npm install
  
  $ npm start 
 ```
