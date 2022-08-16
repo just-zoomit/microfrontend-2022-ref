@@ -123,7 +123,7 @@ function Msdk() {
   
     return (
       <>
-
+<div className={styles.justifyContentAround}>
   <form className={styles.formStyle} onSubmit={getSignature}>
        
     
@@ -165,6 +165,7 @@ function Msdk() {
           <button onClick={getSignature}>Join Meeting</button> 
         </div>
       </form>
+      </div>
           </>
     
     );
