@@ -1,7 +1,7 @@
 This sample app serves to demonstrate an example of micro-frontend implementation with Zoom Meeting SDK. It consists of the following apps in the respective directories:
 
 * container (container app)
-* container app (micro-frontend app)
+* counter app (micro-frontend app)
 * msdk app  (micro-frontend app)
 ---
 
@@ -18,7 +18,7 @@ The container will have all of the mircofrontend. Navigate to the container dire
 ```
 ---
 
-### Starting the micro-frontend: auth
+### Starting the micro-frontend: counter
 You can similarly navigate to the counter directory and run the following commands to start the micro-frontend. It will serve up the micro-frontend JavaScript bundle at http://localhost:8081/
 
 ```
