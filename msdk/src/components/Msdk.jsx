@@ -1,5 +1,7 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import '../App.css';
+
+import styles from "./RegistrationForm.module.css";
 
 
 
@@ -14,18 +16,24 @@ ZoomMtg.i18n.load('en-US');
 ZoomMtg.i18n.reload('en-US');
 
 function Msdk() {
+  const [state, setState] = useState({ meetingNumber: '', passWord: '', role: 1 });
+    const { meetingNumber, passWord, role } = state;
     // const [isBtn, setIsBtn] = useState(true)
 
-   
-    var signatureEndpoint = 'YOUR ENDPOINT'
-    var sdkKey = 'YOUR SDK KEY'
-    var meetingNumber = 'MEETING NUMBER'
-    var role = 0
+    // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
+    var signatureEndpoint = 'https://msdksig.herokuapp.com/'
+    // This Sample App has been updated to use SDK App type credentials https://marketplace.zoom.us/docs/guides/build/sdk-app
+    var sdkKey = '4ASmoeC9qV2BAcj8XFNPD9GK9uTrg60582Fm'
+    // var meetingNumber = '95718138620'
+    // var role = 0
+    // var passWord = '106843'
     var leaveUrl = 'http://localhost:8082'
     var userName = 'DA tst'
     var userEmail = 'donte.zoomie@gmail.com'
-    var passWord = 'Your PASSWORD'
-   
+    
+    // pass in the registrant's token if your meeting or webinar requires registration. More info here:
+    // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/client-view/meetings#join-registered
+    // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/client-view/webinars#join-registered
     var registrantToken = ''
     
 
@@ -111,7 +119,15 @@ function Msdk() {
                       console.log("success getCurrentUser", res.result.currentUser);
                   },
               });
-              
+              if(leavebtn){
+                ZoomMtg.leaveMeeting({
+                      success: function(res) {
+                          console.log("Leave Meeting successful!");
+                      },
+                      error: function(res) {
+                          console.log("Leave Meeting failed with error:", res);
+                      }
+                  });}
           },
             error: (error) => {
               console.log(error)
@@ -127,8 +143,52 @@ function Msdk() {
   
     return (
       <>
+
+  <form className={styles.formStyle} onSubmit={getSignature}>
+       
+    
+        <div className={styles.formGroup}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            placeholder="Email"
+            className={styles.formControl}
+            name="email"
+          />
+        </div>
+      
+        <div className={styles.formGroup}>
+          <label htmlFor="Meeting ID">MeetingID</label>
+          <input
+            
+            className={styles.formControl}
+            value={meetingNumber}
+            onChange={e => setState({ meetingNumber: e.target.value.replaceAll(/\s/g,''), passWord, role })}
+            placeholder="Meeting ID"
+            name="MeetingID"
+            required
+          />
+        </div>
+
+        <div className={styles.formGroup}>
+          <label htmlFor="passWord">PassWord</label>
+          <input
+            className={styles.formControl}
+            value={passWord}
+            onChange={e => setState({ meetingNumber, passWord: e.target.value, role })}
+            placeholder="Meeting Passcode (optional)"
+          />
+        </div>
+        
+       
+        <div>
+
+
+          <button onClick={getSignature}>Join Meeting</button> 
+        </div>
+      </form>
   
-          <button onClick={getSignature}>Join Meeting</button>
+      
          
           </>
     

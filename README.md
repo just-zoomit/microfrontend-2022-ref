@@ -17,6 +17,18 @@ The container will have all of the mircofrontend. Navigate to the container dire
 
 ```
 ---
+### Starting the micro-frontend: msdk 
+You can similarly navigate to the msdk directory and run the following commands to start the micro-frontend. It will serve up the micro-frontend JavaScript bundle at http://localhost:8082/
+
+```
+ $ cd msdk  
+ 
+$ npm install
+ 
+ $ npm start 
+```
+
+___
 
 ### Starting the micro-frontend: counter
 You can similarly navigate to the counter directory and run the following commands to start the micro-frontend. It will serve up the micro-frontend JavaScript bundle at http://localhost:8081/
@@ -29,17 +41,6 @@ You can similarly navigate to the counter directory and run the following comman
  $ npm start 
 ```
 ---
-### Starting the micro-frontend: msdk 
-You can similarly navigate to the msdk directory and run the following commands to start the micro-frontend. It will serve up the micro-frontend JavaScript bundle at http://localhost:8082/
-
-```
- $ cd msdk  
- 
-$ npm install
- 
- $ npm start 
-```
-
 
 ## Notes
 * If change made to Webpack configuration files, must restart server for it to take affect
