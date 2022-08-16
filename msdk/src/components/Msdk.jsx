@@ -5,21 +5,23 @@ import styles from "./RegistrationForm.module.css";
 
 ZoomMtg.setZoomJSLib('https://source.zoom.us/2.6.0/lib', '/av')
 
+
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareWebSDK();
 ZoomMtg.i18n.load('en-US');
 ZoomMtg.i18n.reload('en-US');
 
-function Msdk() { 
+function Msdk() {
   const [state, setState] = useState({ meetingNumber: '', passWord: '', userName: '',role: 1 });
     const { meetingNumber, passWord, role, userName } = state;
     // const [isBtn, setIsBtn] = useState(true)
 
-    var signatureEndpoint = 'YOUR SIGNATURE'
-    var sdkKey = 'YOUR SDK KEY'
+    var signatureEndpoint = ''
+    var sdkKey = ''
     var leaveUrl = 'http://localhost:8082'
-  
-
+    var userEmail = ''
+    var registrantToken = ''
+    
     const leavebtn = document.querySelector('zmu-btn footer__leave-btn ax-outline ellipsis zmu-btn--danger zmu-btn__outline--blue')
     console.log('Leave Button: ',leavebtn)
 
@@ -52,6 +54,9 @@ function Msdk() {
     function getSignature(e) {
       e.preventDefault();
 
+
+  
+  
       fetch(signatureEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -123,7 +128,8 @@ function Msdk() {
   
     return (
       <>
-<div className={styles.justifyContentAround}>
+      <div className={styles.justifyContentAround}>
+
   <form className={styles.formStyle} onSubmit={getSignature}>
        
     
@@ -160,7 +166,7 @@ function Msdk() {
             placeholder="Meeting Passcode (optional)"
           />
         </div>
-       
+    
         <div>
           <button onClick={getSignature}>Join Meeting</button> 
         </div>
