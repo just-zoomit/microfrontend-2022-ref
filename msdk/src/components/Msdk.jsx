@@ -3,39 +3,23 @@ import '../App.css';
 
 import styles from "./RegistrationForm.module.css";
 
-
-
-
 ZoomMtg.setZoomJSLib('https://source.zoom.us/2.6.0/lib', '/av')
-
 
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareWebSDK();
-// loads language files, also passes any error messages to the ui
 ZoomMtg.i18n.load('en-US');
 ZoomMtg.i18n.reload('en-US');
 
-function Msdk() {
-  const [state, setState] = useState({ meetingNumber: '', passWord: '', role: 1 });
-    const { meetingNumber, passWord, role } = state;
+function Msdk() { 
+  const [state, setState] = useState({ meetingNumber: '', passWord: '', userName: '',role: 1 });
+    const { meetingNumber, passWord, role, userName } = state;
     // const [isBtn, setIsBtn] = useState(true)
 
-    // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
     var signatureEndpoint = 'https://msdksig.herokuapp.com/'
-    // This Sample App has been updated to use SDK App type credentials https://marketplace.zoom.us/docs/guides/build/sdk-app
     var sdkKey = '4ASmoeC9qV2BAcj8XFNPD9GK9uTrg60582Fm'
-    // var meetingNumber = '95718138620'
-    // var role = 0
-    // var passWord = '106843'
     var leaveUrl = 'http://localhost:8082'
-    var userName = 'DA tst'
     var userEmail = 'donte.zoomie@gmail.com'
-    
-    // pass in the registrant's token if your meeting or webinar requires registration. More info here:
-    // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/client-view/meetings#join-registered
-    // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/client-view/webinars#join-registered
-    var registrantToken = ''
-    
+  
 
     const leavebtn = document.querySelector('zmu-btn footer__leave-btn ax-outline ellipsis zmu-btn--danger zmu-btn__outline--blue')
     console.log('Leave Button: ',leavebtn)
@@ -69,9 +53,6 @@ function Msdk() {
     function getSignature(e) {
       e.preventDefault();
 
-
-  
-  
       fetch(signatureEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -153,6 +134,8 @@ function Msdk() {
             type="text"
             placeholder="Email"
             className={styles.formControl}
+            value={userName}
+            onChange={e => setState({ meetingNumber, passWord,userName: e.target.value, role })}
             name="email"
           />
         </div>
@@ -160,10 +143,9 @@ function Msdk() {
         <div className={styles.formGroup}>
           <label htmlFor="Meeting ID">MeetingID</label>
           <input
-            
             className={styles.formControl}
             value={meetingNumber}
-            onChange={e => setState({ meetingNumber: e.target.value.replaceAll(/\s/g,''), passWord, role })}
+            onChange={e => setState({ meetingNumber: e.target.value.replaceAll(/\s/g,''), passWord, userName, role })}
             placeholder="Meeting ID"
             name="MeetingID"
             required
@@ -175,21 +157,15 @@ function Msdk() {
           <input
             className={styles.formControl}
             value={passWord}
-            onChange={e => setState({ meetingNumber, passWord: e.target.value, role })}
+            onChange={e => setState({ meetingNumber, passWord: e.target.value,userName, role })}
             placeholder="Meeting Passcode (optional)"
           />
         </div>
-        
        
         <div>
-
-
           <button onClick={getSignature}>Join Meeting</button> 
         </div>
       </form>
-  
-      
-         
           </>
     
     );
