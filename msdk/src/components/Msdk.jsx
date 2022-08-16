@@ -15,10 +15,9 @@ function Msdk() {
     const { meetingNumber, passWord, role, userName } = state;
     // const [isBtn, setIsBtn] = useState(true)
 
-    var signatureEndpoint = 'https://msdksig.herokuapp.com/'
-    var sdkKey = '4ASmoeC9qV2BAcj8XFNPD9GK9uTrg60582Fm'
+    var signatureEndpoint = 'YOUR SIGNATURE'
+    var sdkKey = 'YOUR SDK KEY'
     var leaveUrl = 'http://localhost:8082'
-    var userEmail = 'donte.zoomie@gmail.com'
   
 
     const leavebtn = document.querySelector('zmu-btn footer__leave-btn ax-outline ellipsis zmu-btn--danger zmu-btn__outline--blue')
