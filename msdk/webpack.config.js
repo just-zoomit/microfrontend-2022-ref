@@ -4,7 +4,11 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const path = require("path");
 
 const deps = require("./package.json").dependencies;
+
+let https = false;
+
 module.exports = {
+  
   output: {
     publicPath: "http://localhost:8082/",
   },
@@ -17,6 +21,9 @@ module.exports = {
     port: 8082,
     historyApiFallback: true,
     hot: true, //Add this
+    headers: {
+      'Access-Control-Allow-Origin': https ? 'https://0.0.0.0:8080' : 'http://0.0.0.0:8080'
+  },
   },
 
   module: {
@@ -47,7 +54,9 @@ module.exports = {
       name: "msdk",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./Msdk": "./src/components/Msdk",
+      },
       shared: {
         ...deps,
         react: {
@@ -62,13 +71,7 @@ module.exports = {
     }),
     
     new HtmlWebPackPlugin({
-      // inject: true,
-      // template: "./src/index.html",
-      name: "index.html", //Add this
-      inject: true, //Add this
-      template: path.resolve(__dirname, "./src/index.html"), //Add this
-      inject: 'body', // Add to inject <script defer src="http://localhost:8082/main.js"></script> to body
-      
+      template: "./src/index.html",
     }),
   ],
 };

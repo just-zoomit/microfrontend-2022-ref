@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Zoom from './component/Zoom';
+import Msdk from './components/Msdk';
 
 import "./index.css";
 
@@ -10,9 +10,9 @@ const App = () => (
      <main>
         <h1>Zoom Meeting SDK Sample React</h1>
 
-          <Zoom/>
+          <Msdk/>
       </main>
   </div>
 );
-ReactDOM.render(<React.StrictMode> <App /></React.StrictMode>, document.getElementById('root'));
+ReactDOM.render( <App /> , document.getElementById('root'));
 

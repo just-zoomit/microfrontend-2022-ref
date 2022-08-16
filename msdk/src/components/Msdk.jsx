@@ -1,8 +1,11 @@
 import React, {useRef} from 'react';
 import '../App.css';
-import { ZoomMtg } from '@zoomus/websdk';
 
-ZoomMtg.setZoomJSLib('https://source.zoom.us/2.6.0/lib', '/av');
+
+
+
+ZoomMtg.setZoomJSLib('https://source.zoom.us/2.6.0/lib', '/av')
+
 
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareWebSDK();
@@ -10,34 +13,32 @@ ZoomMtg.prepareWebSDK();
 ZoomMtg.i18n.load('en-US');
 ZoomMtg.i18n.reload('en-US');
 
-function Zoom() {
+function Msdk() {
     // const [isBtn, setIsBtn] = useState(true)
 
-    // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
-    var signatureEndpoint = 'signatureEndpoint'
-    // This Sample App has been updated to use SDK App type credentials https://marketplace.zoom.us/docs/guides/build/sdk-app
+   
+    var signatureEndpoint = 'YOUR ENDPOINT'
     var sdkKey = 'YOUR SDK KEY'
-    var meetingNumber = '91562757618'
+    var meetingNumber = 'MEETING NUMBER'
     var role = 0
     var leaveUrl = 'http://localhost:8082'
-    var userName = 'React'
+    var userName = 'DA tst'
     var userEmail = 'donte.zoomie@gmail.com'
-    var passWord = '226267'
-    // pass in the registrant's token if your meeting or webinar requires registration. More info here:
-    // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/client-view/meetings#join-registered
-    // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/client-view/webinars#join-registered
+    var passWord = 'Your PASSWORD'
+   
     var registrantToken = ''
     
 
-    // const leavebtn = document.querySelector('zmu-btn footer__leave-btn ax-outline ellipsis zmu-btn--danger zmu-btn__outline--blue')
-    // console.log('Leave Button: ',leavebtn)
+    const leavebtn = document.querySelector('zmu-btn footer__leave-btn ax-outline ellipsis zmu-btn--danger zmu-btn__outline--blue')
+    console.log('Leave Button: ',leavebtn)
 
     // const handleClick = (e) => {
         
     // if(e.target.textContent === "Leave"){
     //       ZoomMtg.leaveMeeting({});
     // }else {
-    //       console.log('A key was pressed', e.target.textContent);
+    //      console.log(e.target.textContent)
+    //       console.log('A key was pressed', e.currentTarget);
     //     }
        
     //   };
@@ -110,15 +111,7 @@ function Zoom() {
                       console.log("success getCurrentUser", res.result.currentUser);
                   },
               });
-              if(leavebtn){
-                ZoomMtg.leaveMeeting({
-                      success: function(res) {
-                          console.log("Leave Meeting successful!");
-                      },
-                      error: function(res) {
-                          console.log("Leave Meeting failed with error:", res);
-                      }
-                  });}
+              
           },
             error: (error) => {
               console.log(error)
@@ -142,4 +135,4 @@ function Zoom() {
     );
   }
   
-  export default Zoom;
+  export default Msdk;
